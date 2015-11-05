@@ -36,6 +36,7 @@ function mainController(Facebook, $scope, $rootScope, $http, $location) {
         if (args.userNotAuthorized === true) {
             //if the user has not authorized the app, we must write his credentials in our database
             console.log("user is connected to facebook but has not authorized our app");
+            // Update session
         }
         else {
             console.log("user is connected to facebook and has authorized our app");

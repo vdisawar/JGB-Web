@@ -1,4 +1,7 @@
 var webApp = angular.module('FacebookProvider', []);
+
+//Referenced from https://github.com/Terumi/AngularJS-Facebook-Login
+
 webApp.factory('Facebook', function ($rootScope) {
     return {
         // Calls the FB login status function and broadcasts results
