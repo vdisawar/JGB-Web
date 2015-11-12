@@ -32,8 +32,9 @@
 				<!-- Nav -->
 					<nav id="nav">
 						<ul>
-							<li><a href="#lobbies">Lobbies</a></li>
-							<li><a href="#intro">Login</a></li>
+							<li ng-show="!loginAction"><a href="#lobbies">Lobbies</a></li>
+							<li ng-show="loginAction"><a href="#intro" ng-click="login()" >Login</a></li>
+							<li ng-show="!loginAction"><a href="#intro" ng-click="logout()" >Logout</a></li>
 						</ul>
 					</nav>
 
@@ -46,21 +47,6 @@
 						<h2>JesusGandhiAndBebe</h2>
 					</header>
 					<p>All your pictures in one place</p>
-
-                     <center>
-                        <div class="fb-video"
-                             data-href="https://www.facebook.com/facebook/videos/10153231379946729/"
-                             data-width="500">
-                            <div class="fb-xfbml-parse-ignore">
-                            <blockquote cite="https://www.facebook.com/facebook/videos/10153231379946729/">
-                                <a href="https://www.facebook.com/facebook/videos/10153231379946729/">How to Share With Just Friends</a>
-                                <p>How to share with just friends.</p>Posted by
-                                <a href="https://www.facebook.com/facebook/">Facebook</a> on Friday, December 5, 2014
-                            </blockquote>
-                            </div>
-                        </div>
-                    </center>
-
                     <center>
                         <div class="fb-like"
                              data-href="https://developers.facebook.com/docs/plugins/"
@@ -83,32 +69,29 @@
 
 
 
-		
+
 		<!-- Work -->
-			<section id="lobbies" class="main style3 primary">
+		<section id="lobbies" class="main style3 primary" ng-show="!loginAction">
+			<div class="lobby-title-margin">
+				<h2>Lobbies</h2>
+				<hr>
+			</div>
+			<div ng-repeat="(key, lobby) in lobbies" class="lobby-margin">
 				<div class="content container">
 					<header>
-						<h2>Lobby Name</h2>
+						<h2>{{lobby.name}}</h2>
 					</header>
 
 					<!-- Lightbox Gallery  -->
-						<div class="container 75% gallery">
-							<div class="row 0% images">
-								<div class="6u 12u(mobile)"><a href="../static/images/fulls/01.jpg" class="image fit from-left"><img src="../static/images/thumbs/01.jpg" title="The Anonymous Red" alt="" /></a></div>
-								<div class="6u 12u(mobile)"><a href="../static/images/fulls/02.jpg" class="image fit from-right"><img src="../static/images/thumbs/02.jpg" title="Airchitecture II" alt="" /></a></div>
-							</div>
-							<div class="row 0% images">
-								<div class="6u 12u(mobile)"><a href="../static/images/fulls/03.jpg" class="image fit from-left"><img src="../static/images/thumbs/03.jpg" title="Air Lounge" alt="" /></a></div>
-								<div class="6u 12u(mobile)"><a href="../static/images/fulls/04.jpg" class="image fit from-right"><img src="../static/images/thumbs/04.jpg" title="Carry on" alt="" /></a></div>
-							</div>
-							<div class="row 0% images">
-								<div class="6u 12u(mobile)"><a href="../static/images/fulls/05.jpg" class="image fit from-left"><img src="../static/images/thumbs/05.jpg" title="The sparkling shell" alt="" /></a></div>
-								<div class="6u 12u(mobile)"><a href="../static/images/fulls/06.jpg" class="image fit from-right"><img src="../static/images/thumbs/06.jpg" title="Bent IX" alt="" /></a></div>
+						<div class="container 75% gallery picture-box">
+							<div class="row 0% images" ng-repeat="(keyP, picture) in pictures">
+								<div class="6u 12u(mobile)"><a href="../static/images/fulls/01.jpg" class="image fit from-left"><img src="../static/images/thumbs/01.jpg" title={{picture[0].author}} alt="" /></a></div>
+								<div class="6u 12u(mobile)"><a href="../static/images/fulls/02.jpg" class="image fit from-right"><img src="../static/images/thumbs/02.jpg" title="{{picture[1].author}}" alt="" /></a></div>
 							</div>
 						</div>
-
 				</div>
-			</section>
+			</div>
+		</section>
 
 		<!-- Footer -->
 			<footer id="footer">
