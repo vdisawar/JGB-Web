@@ -1,6 +1,27 @@
 function mainController(Facebook, $scope, $rootScope, $http, $location) {
     $scope.info = {};
-
+    $scope.loginAction = true;
+    $scope.lobbies = [{
+        name: "Party 1"
+    }, {
+        name: "Party at the Club"
+    }, {
+        name: "Party at Vishal's"
+    }];
+    $scope.pictures = [[{
+        author: "Vishal",
+        time: "00:11:22"
+    }, {
+        author: "Josh",
+        time: "00:11:22"
+    }],[{
+        author: "Mallory",
+        time: "00:11:22"
+    }, {
+        author: "Jake",
+        time: "00:11:22"
+    }]
+    ];
     // Checks the status change and begins actions
     $rootScope.$on("fb_statusChange", function (event, args) {
         $rootScope.fb_status = args.status;
@@ -62,11 +83,15 @@ function mainController(Facebook, $scope, $rootScope, $http, $location) {
 
     $scope.login = function () {
         Facebook.login();
+        $scope.loginAction = false;
+        alert("Success you logged in");
     };
 
     $scope.logout = function () {
         Facebook.logout();
         $rootScope.session = {};
+        $scope.loginAction = true;
+        alert("Success you logged out");
         //make a call to backend to logout
     };
 
@@ -81,5 +106,17 @@ function mainController(Facebook, $scope, $rootScope, $http, $location) {
         });
         $rootScope.info = $rootScope.session;
 
+    };
+
+    $scope.getLobbies = function() {
+            $http.get('/api/getLobbies', {token: $rootScope.session}, function(response) {
+                 $scope.lobbies = response.lobbies;
+            });
+    };
+
+    $scope.getPictures = function(lobby) {
+            $http.get('/api/getPictures', {token: $rootScope.session, lobby: lobby.lobby_id}, function(response) {
+                 $scope.pictures = response.pictures;
+            });
     };
 }
