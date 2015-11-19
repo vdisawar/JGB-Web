@@ -15,9 +15,9 @@ module.exports = {
 		newLobby.save(function(err, newLob){
 			//Adds the lobby to the database
 			if (err) {
-				return res.status(400).send("Lobby Not Created");
+				return res.status(400).send({message: "Lobby Not Created", error: err});
 			} else {
-				return res.status(200).send("Lobby Created");
+				return res.status(200).send({message: "Lobby Created", lobby: newLob});
 			}
 		});
 	},
@@ -26,7 +26,7 @@ module.exports = {
 		var body = req.body;
 		var facebookId = req.headers['x-facebook-id'];
 
-		Lobby.find({creator: facebookId, users: {$elemMatch: {userId: facebookId}}},function( err, lobbies) {
+		Lobby.find({creator: facebookId,function( err, lobbies) {
 			if (err) {
 				return res.status(400).send({message: "Lobbies Not Found", data: []});
 			} else {
