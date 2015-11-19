@@ -39,6 +39,7 @@ function mainController(Facebook, $scope, $rootScope, $http, $location) {
     $rootScope.$on("fb_logout_succeded", function () {
         console.log("fb_logout_succeded");
         $rootScope.id = "";
+        $scope.loginAction = true;
     });
     // On fail, show fail
     $rootScope.$on("fb_logout_failed", function () {
@@ -64,6 +65,7 @@ function mainController(Facebook, $scope, $rootScope, $http, $location) {
             //the parameter needed in that case is just the users facebook id
             params = {'facebook_id':args.facebook_id};
             authenticateViaFacebook(params);
+            $scope.loginAction = false;
         }
 
     });
@@ -82,16 +84,12 @@ function mainController(Facebook, $scope, $rootScope, $http, $location) {
     };
 
     $scope.login = function () {
-        Facebook.login(function(response) {
-            console.log(response);
-        });
-        $scope.loginAction = false;
+        Facebook.login();
     };
 
     $scope.logout = function () {
         Facebook.logout();
         $rootScope.session = {};
-        $scope.loginAction = true;
         alert("Success you logged out");
         //make a call to backend to logout
     };
