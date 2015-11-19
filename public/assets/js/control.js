@@ -2,13 +2,7 @@ webApp.controller('mainController', function mainController(Facebook, $scope, $r
     $scope.info = {};
     $scope.loginAction = true;
     $rootScope.facebook_id = 0;
-    $scope.lobbies = [{
-        name: "Party 1"
-    }, {
-        name: "Party at the Club"
-    }, {
-        name: "Party at Vishal's"
-    }];
+    $scope.lobbies = [];
     $scope.pictures = [[{
         author: "Vishal",
         time: "00:11:22"
