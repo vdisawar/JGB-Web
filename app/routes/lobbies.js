@@ -7,7 +7,7 @@ module.exports = {
 
 		var newLobby = new Lobby({
 			name: body.name,
-			creator: body.token
+			creator: req.headers['X-Facebook-Token']
 		});
 
 		newLobby.save(function(err, newLob){
