@@ -49,7 +49,7 @@ module.exports = {
 					if (err) {
 						return res.status(400).send({message: "User not added"});
 					} else {
-						return res.status(200).send({message: "User Added", lobby: lobby[0]});
+						return res.status(200).send({message: "User Added", lobby: newLob});
 					}
 				});
 			}
