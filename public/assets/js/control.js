@@ -52,6 +52,7 @@ function mainController(Facebook, $scope, $rootScope, $http, $location) {
         var params = {};
 
         function authenticateViaFacebook(parameters) {
+            $rootScope.updateSession();
             //posts some user data to a page that will check them against some db
         }
 
