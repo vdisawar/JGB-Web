@@ -64,7 +64,6 @@ function mainController(Facebook, $scope, $rootScope, $http, $location) {
         else {
             console.log("user is connected to facebook and has authorized our app");
             //the parameter needed in that case is just the users facebook id
-            $scope.loginAction = false;
             params = {'facebook_id':args.facebook_id};
             authenticateViaFacebook(params);
         }
@@ -74,10 +73,11 @@ function mainController(Facebook, $scope, $rootScope, $http, $location) {
 
     $rootScope.updateSession = function () {
         //reads the session variables if exists
+        $scope.loginAction = false;
         console.log("Updated");
     };
 
-    $rootScope.updateSession();
+    // $rootScope.updateSession();
 
     // button functions
     $scope.getLoginStatus = function () {
