@@ -59,8 +59,7 @@
 		<!-- Work -->
 		<section id="lobbies" class="main style3 primary" ng-show="!loginAction">
 			<div class="lobby-title-margin">
-				<h2>Lobbies</h2>
-				<a href="javascript:void(0)" ng-click="getLobbies()">ACTION</a>
+				<h2 ng-click="getLobbies()">Lobbies</h2>
 				<hr>
 			</div>
 			<div ng-repeat="(key, lobby) in lobbies" class="lobby-margin">
