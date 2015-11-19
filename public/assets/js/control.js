@@ -1,7 +1,7 @@
 function mainController(Facebook, $scope, $rootScope, $http, $location) {
     $scope.info = {};
     $scope.loginAction = true;
-    $scope.facebook_id = 0;
+    $rootScope.facebook_id = 0;
     $scope.lobbies = [{
         name: "Party 1"
     }, {
@@ -63,8 +63,8 @@ function mainController(Facebook, $scope, $rootScope, $http, $location) {
         else {
             console.log("user is connected to facebook and has authorized our app");
             //the parameter needed in that case is just the users facebook id
+            $rootScope.facebook_id = args.facebook_id;
             params = {'facebook_id':args.facebook_id};
-            $scope.facebook_id = args.facebook_id;
             authenticateViaFacebook(params);
         }
 
@@ -111,7 +111,7 @@ function mainController(Facebook, $scope, $rootScope, $http, $location) {
 
     $scope.getLobbies = function() {
         var config = {headers: {
-            'x-facebook-id': $rootScope.session.facebook_id
+            'x-facebook-id': $rootScope.facebook_id
             }
         };
         $http.get('/api/Lobbies/get', config, function(response) {
@@ -120,8 +120,12 @@ function mainController(Facebook, $scope, $rootScope, $http, $location) {
     };
 
     $scope.getPictures = function(lobby) {
-            $http.get('/api/Pictures/get', {token: $rootScope.session.facebook_id, lobby: lobby.lobby_id}, function(response) {
-                 $scope.pictures = response.pictures;
-            });
+        var config = {headers: {
+            'x-facebook-id': $rootScope.facebook_id
+            }
+        };
+        $http.get('/api/Pictures/get', {lobby: lobby._id}, config, function(response) {
+             $scope.pictures = response.pictures;
+        });
     };
 }
