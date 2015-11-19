@@ -1,6 +1,7 @@
 function mainController(Facebook, $scope, $rootScope, $http, $location) {
     $scope.info = {};
     $scope.loginAction = true;
+    $scope.facebook_id = 0;
     $scope.lobbies = [{
         name: "Party 1"
     }, {
@@ -63,7 +64,7 @@ function mainController(Facebook, $scope, $rootScope, $http, $location) {
             console.log("user is connected to facebook and has authorized our app");
             //the parameter needed in that case is just the users facebook id
             params = {'facebook_id':args.facebook_id};
-            console.log(args.facebook_id);
+            $scope.facebook_id = args.facebook_id;
             authenticateViaFacebook(params);
         }
 
