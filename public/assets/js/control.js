@@ -114,9 +114,10 @@ function mainController(Facebook, $scope, $rootScope, $http, $location) {
             'x-facebook-id': id
             }
         };
-        $http.get('/api/Lobbies/get', config, function(response) {
-             $scope.lobbies = response.data;
-             console.log(response);
+        $http.get('/api/Lobbies/get')
+            .then(function(response) {
+                $scope.lobbies = response.data;
+                console.log(response);
         });
     };
 
