@@ -15,9 +15,9 @@ module.exports = {
 		newLobby.save(function(err, newLob){
 			//Adds the lobby to the database
 			if (err) {
-				return res.status(400).send({message: "Lobby Not Created", error: err});
+				return res.status(400).send("Lobby Not Created");
 			} else {
-				return res.status(200).send({message: "Lobby Created", lobby: newLob});
+				return res.status(200).send("Lobby Created");
 			}
 		});
 	},
