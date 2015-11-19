@@ -20,8 +20,6 @@ module.exports = function(config) {
       'https://code.angularjs.org/1.1.1/angular-sanitize.js',
       'https://code.angularjs.org/1.1.1/angular-mock.js',
       'public/assets/js/*.js',
-      'test/**/*Spec.js',
-      'test/**/*Spec.js',
       'test/**/*Spec.js'
     ],
 

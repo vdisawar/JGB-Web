@@ -3,6 +3,7 @@ webApp.controller('mainController', function mainController(Facebook, $scope, $r
     $scope.loginAction = true;
     $rootScope.facebook_id = 0;
     $scope.lobbies = [];
+    $scope.picturesDisplay = [];
     $scope.pictures = [[{
         author: "Vishal",
         time: "00:11:22"
@@ -120,7 +121,7 @@ webApp.controller('mainController', function mainController(Facebook, $scope, $r
             }
         };
         $http.get('/api/Pictures/get', {lobby: lobby._id}, config).then(function(response) {
-             $scope.pictures[key] = response.pictures;
+             $scope.picturesDisplay[key] = response.pictures;
         });
     };
 });

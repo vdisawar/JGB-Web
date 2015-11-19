@@ -1,7 +1,7 @@
-describe('sorting the list of users', function() {
+describe('sorting the list of lobbies', function() {
   it('sorts in descending order by default', function() {
-    var users = ['jack', 'igor', 'jeff'];
-    var sorted = users
+    var lobbies = ['jack', 'igor', 'jeff'];
+    var sorted = lobbies;
     expect(sorted).toEqual(['jeff', 'jack', 'igor']);
   });
 });
