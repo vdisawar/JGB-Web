@@ -63,6 +63,7 @@ function mainController(Facebook, $scope, $rootScope, $http, $location) {
             console.log("user is connected to facebook and has authorized our app");
             //the parameter needed in that case is just the users facebook id
             params = {'facebook_id':args.facebook_id};
+            console.log(args.facebook_id);
             authenticateViaFacebook(params);
         }
 
