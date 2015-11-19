@@ -44,7 +44,6 @@
 				<div class="content container 75%">
 					<header>
 						<h2>JesusGandhiAndBebe</h2>
-						<h2>{{facebook_id}}</h2>
 					</header>
 					<p>All your pictures in one place</p>
                     <center>
@@ -88,6 +87,13 @@
 							<div class="row 0% images" ng-repeat="(keyP, picture) in pictures">
 								<div class="6u 12u(mobile)"><a href="../images/fulls/01.jpg" class="image fit from-left"><img src="../images/thumbs/01.jpg" title={{picture[0].author}} alt="" /></a></div>
 								<div class="6u 12u(mobile)"><a href="../images/fulls/02.jpg" class="image fit from-right"><img src="../images/thumbs/02.jpg" title="{{picture[1].author}}" alt="" /></a></div>
+							</div>
+						</div>
+						<div class="lobby-title-margin">
+							<h2>Pictures</h2>
+							<a href="javascript:void(0)" ng-click="getPictures(lobby, key)">ACTION</a>
+							<div ng-repeat="(keyP, pic) in picturesDisplay[key]">
+								<p>PICTURE</p>
 							</div>
 						</div>
 				</div>
