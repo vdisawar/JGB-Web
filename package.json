@@ -1,0 +1,21 @@
+{
+  "name": "JesusGandhiAndBebe",
+  "version": "1.0.0",
+  "description": "Server for CS 242 Project",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Pranav Boopathy",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "~1.12.3",
+    "express": "~4.9.2",
+    "express-validator": "^2.17.1",
+    "firebase": "^2.3.2",
+    "helmet": "^0.13.0",
+    "mongoose": "~4.0.5",
+    "morgan": "~1.6.0",
+    "superagent": "^1.4.0"
+  }
+}
