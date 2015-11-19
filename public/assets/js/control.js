@@ -2,7 +2,6 @@ function mainController(Facebook, $scope, $rootScope, $http, $location) {
     $scope.info = {};
     $scope.loginAction = true;
     $rootScope.facebook_id = 0;
-    $scope.picturesDisplay = [];
     $scope.lobbies = [{
         name: "Party 1"
     }, {
@@ -127,7 +126,7 @@ function mainController(Facebook, $scope, $rootScope, $http, $location) {
             }
         };
         $http.get('/api/Pictures/get', {lobby: lobby._id}, config).then(function(response) {
-             $scope.picturesDisplay[key] = response.pictures;
+             $scope.pictures[key] = response.pictures;
         });
     };
 }
