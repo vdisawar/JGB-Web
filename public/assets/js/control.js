@@ -77,14 +77,15 @@ function mainController(Facebook, $scope, $rootScope, $http, $location) {
     $rootScope.updateSession();
 
     // button functions
+    $scope.logg = false;
     $scope.getLoginStatus = function () {
-        Facebook.getLoginStatus();
+        $scope.logg = Facebook.getLoginStatus();
+        console.log($scope.logg);
     };
 
     $scope.login = function () {
         Facebook.login();
         $scope.loginAction = false;
-        alert("Success you logged in");
     };
 
     $scope.logout = function () {
