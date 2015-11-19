@@ -115,18 +115,19 @@ function mainController(Facebook, $scope, $rootScope, $http, $location) {
             }
         }).then(function(response) {
                 $scope.lobbies = response.data.data;
+
                 console.log(response.data);
         });
     };
 
-    $scope.getPictures = function(lobby) {
+    $scope.getPictures = function(lobby,key) {
         var id = $rootScope.facebook_id;
         var config = {headers: {
             'x-facebook-id': id
             }
         };
         $http.get('/api/Pictures/get', {lobby: lobby._id}, config).then(function(response) {
-             $scope.pictures = response.pictures;
+             $scope.pictures[key] = response.pictures;
         });
     };
 }

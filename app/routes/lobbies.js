@@ -8,7 +8,8 @@ module.exports = {
 
 		var newLobby = new Lobby({
 			name: body.name,
-			creator: facebookId
+			creator: facebookId,
+			users: body.users
 		});
 
 		newLobby.save(function(err, newLob){
@@ -30,28 +31,6 @@ module.exports = {
 				return res.status(400).send({message: "Lobbies Not Found", data: []});
 			} else {
 				return res.status(200).send({message: "Lobbies Found", data: lobbies});
-			}
-		});
-	},
-	invite: function(req, res) {
-		var body = req.body;
-		var facebookIdCreator = req.headers['x-facebook-id'];
-		var userToAdd = body.user;
-		var lobbyId = body.lobbyId;
-
-		Lobby.find({_id: lobbyId},function( err, lobby) {
-			if (err) {
-				return res.status(400).send({message: "Lobbies Not Found"});
-			} else {
-				lobby[0].users.push({userId: userToAdd});
-				lobby[0].save(function(err, newLob){
-					//Adds the user to the lobby
-					if (err) {
-						return res.status(400).send({message: "User not added"});
-					} else {
-						return res.status(200).send({message: "User Added", lobby: newLob});
-					}
-				});
 			}
 		});
 	}
