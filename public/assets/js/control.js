@@ -109,8 +109,7 @@ function mainController(Facebook, $scope, $rootScope, $http, $location) {
     };
 
     $scope.getLobbies = function() {
-        // var id = $rootScope.facebook_id;
-        var id = "110450045988430";
+        var id = $rootScope.facebook_id;
         $http.get('/api/Lobbies/get', {headers: {
             'x-facebook-id': id
             }
