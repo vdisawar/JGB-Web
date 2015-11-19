@@ -116,6 +116,7 @@ function mainController(Facebook, $scope, $rootScope, $http, $location) {
         };
         $http.get('/api/Lobbies/get', config, function(response) {
              $scope.lobbies = response.data;
+             console.log(response);
         });
     };
 
