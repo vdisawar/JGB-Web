@@ -4,7 +4,7 @@ module.exports = {
 	
 	create: function(req, res) {
 		var body = req.body;
-		var facebookId = req.headers['X-Facebook-ID'];
+		var facebookId = req.headers['X-Facebook-Token'];
 
 		var newLobby = new Lobby({
 			name: body.name,
