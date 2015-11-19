@@ -8,8 +8,7 @@ module.exports = {
 
 		var newLobby = new Lobby({
 			name: body.name,
-			creator: facebookId,
-			users: []
+			creator: facebookId
 		});
 
 		newLobby.save(function(err, newLob){
