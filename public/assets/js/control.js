@@ -110,12 +110,10 @@ function mainController(Facebook, $scope, $rootScope, $http, $location) {
 
     $scope.getLobbies = function() {
         var id = $rootScope.facebook_id;
-        var config = {headers: {
+        $http.get('/api/Lobbies/get', {headers: {
             'x-facebook-id': id
             }
-        };
-        $http.get('/api/Lobbies/get')
-            .then(function(response) {
+        }).then(function(response) {
                 $scope.lobbies = response.data;
                 console.log(response);
         });
@@ -127,7 +125,7 @@ function mainController(Facebook, $scope, $rootScope, $http, $location) {
             'x-facebook-id': id
             }
         };
-        $http.get('/api/Pictures/get', {lobby: lobby._id}, config, function(response) {
+        $http.get('/api/Pictures/get', {lobby: lobby._id}, config).then(function(response) {
              $scope.pictures = response.pictures;
         });
     };
