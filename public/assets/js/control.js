@@ -115,7 +115,6 @@ function mainController(Facebook, $scope, $rootScope, $http, $location) {
             }
         }).then(function(response) {
                 $scope.lobbies = response.data.data;
-
                 console.log(response.data);
         });
     };
