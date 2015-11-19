@@ -43,6 +43,7 @@ module.exports = {
 			if (err) {
 				return res.status(400).send({message: "Lobbies Not Found"});
 			} else {
+				console.log(lobby);
 				lobby['users'].push({userId: userToAdd});
 				lobby.save(function(err, newLob){
 					//Adds the user to the lobby
