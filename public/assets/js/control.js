@@ -1,6 +1,6 @@
 function mainController(Facebook, $scope, $rootScope, $http, $location) {
     $scope.info = {};
-    $scope.loginAction = true;
+    $rootScope.loginAction = true;
     $scope.lobbies = [{
         name: "Party 1"
     }, {
@@ -39,7 +39,7 @@ function mainController(Facebook, $scope, $rootScope, $http, $location) {
     $rootScope.$on("fb_logout_succeded", function () {
         console.log("fb_logout_succeded");
         $rootScope.id = "";
-        $scope.loginAction = true;
+        $rootScope.loginAction = true;
     });
     // On fail, show fail
     $rootScope.$on("fb_logout_failed", function () {
@@ -52,7 +52,6 @@ function mainController(Facebook, $scope, $rootScope, $http, $location) {
         var params = {};
 
         function authenticateViaFacebook(parameters) {
-            $rootScope.updateSession();
             //posts some user data to a page that will check them against some db
         }
 
@@ -64,6 +63,7 @@ function mainController(Facebook, $scope, $rootScope, $http, $location) {
         else {
             console.log("user is connected to facebook and has authorized our app");
             //the parameter needed in that case is just the users facebook id
+            $rootScope.loginAction = false;
             params = {'facebook_id':args.facebook_id};
             authenticateViaFacebook(params);
         }
@@ -73,7 +73,6 @@ function mainController(Facebook, $scope, $rootScope, $http, $location) {
 
     $rootScope.updateSession = function () {
         //reads the session variables if exists
-        $scope.loginAction = false;
         console.log("Updated");
     };
 
