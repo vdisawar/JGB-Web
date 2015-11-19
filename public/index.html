@@ -47,20 +47,6 @@
 						<h2>JesusGandhiAndBebe</h2>
 					</header>
 					<p>All your pictures in one place</p>
-                    <center>
-                        <div class="fb-like"
-                             data-href="https://developers.facebook.com/docs/plugins/"
-                             data-layout="standard"
-                             data-action="like" data-show-faces="true">
-                        </div>
-                        <div class="fb-send"
-                             data-href="https://developers.facebook.com/docs/plugins/">
-                        </div>
-                        <div class="fb-share-button"
-                             data-href="https://developers.facebook.com/docs/plugins/"
-                             data-layout="button_count">
-                        </div>
-                    </center>
 					<footer>
 						<a href="#lobbies" class="button style2 down">More</a>
 					</footer>
@@ -82,21 +68,21 @@
 					<header>
 						<h2>{{lobby.name}}</h2>
 					</header>
-
+					<a href="javascript:void(0)" ng-click="getPictures(lobby, key)">Get Pictures</a>
 					<!-- Lightbox Gallery  -->
 						<div class="container 75% gallery picture-box">
-							<div class="row 0% images" ng-repeat="(keyP, picture) in pictures">
+							<div class="row 0% images" ng-repeat="(keyP, pic) in picturesDisplay[key]">
 								<div class="6u 12u(mobile)"><a href="../images/fulls/01.jpg" class="image fit from-left"><img src="../images/thumbs/01.jpg" title={{picture[0].author}} alt="" /></a></div>
 								<div class="6u 12u(mobile)"><a href="../images/fulls/02.jpg" class="image fit from-right"><img src="../images/thumbs/02.jpg" title="{{picture[1].author}}" alt="" /></a></div>
 							</div>
 						</div>
-						<div class="lobby-title-margin">
+						<!-- <div class="lobby-title-margin">
 							<h2>Pictures</h2>
 							<a href="javascript:void(0)" ng-click="getPictures(lobby, key)">ACTION</a>
 							<div ng-repeat="(keyP, pic) in picturesDisplay[key]">
 								<p>PICTURE</p>
 							</div>
-						</div>
+						</div> -->
 				</div>
 			</div>
 		</section>
