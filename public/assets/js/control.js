@@ -106,26 +106,25 @@ function mainController(Facebook, $scope, $rootScope, $http, $location) {
             console.log('Good to see you, ' + response.name + '.');
         });
         $rootScope.info = $rootScope.session;
-
     };
 
     $scope.getLobbies = function() {
-        console.log("HELLO");
-        var id = $rootScope.facebook_id
-        console.log(id);
+        var id = $rootScope.facebook_id;
         var config = {headers: {
-            'x-facebook-id': $rootScope.facebook_id
+            'x-facebook-id': id
             }
         };
         $http.get('/api/Lobbies/get', config, function(response) {
              $scope.lobbies = response.data;
              console.log(response);
         });
+        console.log("fasdf");
     };
 
     $scope.getPictures = function(lobby) {
+        var id = $rootScope.facebook_id;
         var config = {headers: {
-            'x-facebook-id': $rootScope.facebook_id
+            'x-facebook-id': id
             }
         };
         $http.get('/api/Pictures/get', {lobby: lobby._id}, config, function(response) {

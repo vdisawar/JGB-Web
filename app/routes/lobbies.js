@@ -1,7 +1,7 @@
 var Lobby = require('../models/Lobby');
 
 module.exports = {
-	
+
 	create: function(req, res) {
 		var body = req.body;
 		var facebookId = req.headers['x-facebook-id'];
@@ -14,7 +14,7 @@ module.exports = {
 		newLobby.save(function(err, newLob){
 			//Adds the lobby to the database
 			if (err) {
-				return res.status(400).send({message: "Lobby Not Created " + err + " " + facebookId});
+				return res.status(400).send({message: "Lobby Not Created "});
 			} else {
 				return res.status(200).send({message: "Lobby Created", lobby: newLob});
 			}
