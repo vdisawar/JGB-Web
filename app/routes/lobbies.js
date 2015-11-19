@@ -4,11 +4,14 @@ module.exports = {
 	
 	create: function(req, res) {
 		var body = req.body;
+		var facebookToken = req.headers['x-facebook-token'];
 
 		var newLobby = new Lobby({
 			name: body.name,
-			creator: req.headers['X-Facebook-Token']
+			creator: facebookToken
 		});
+
+
 
 		newLobby.save(function(err, newLob){
 			//Adds the lobby to the database
