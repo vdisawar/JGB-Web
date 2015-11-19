@@ -26,7 +26,7 @@ module.exports = {
 		var body = req.body;
 		var facebookId = req.headers['x-facebook-id'];
 
-		Lobby.find({creator: facebookId,function( err, lobbies) {
+		Lobby.find({creator: facebookId},function( err, lobbies) {
 			if (err) {
 				return res.status(400).send({message: "Lobbies Not Found", data: []});
 			} else {
