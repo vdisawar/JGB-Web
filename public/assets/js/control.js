@@ -1,6 +1,6 @@
 function mainController(Facebook, $scope, $rootScope, $http, $location) {
     $scope.info = {};
-    $rootScope.loginAction = true;
+    $scope.loginAction = true;
     $scope.lobbies = [{
         name: "Party 1"
     }, {
@@ -39,7 +39,6 @@ function mainController(Facebook, $scope, $rootScope, $http, $location) {
     $rootScope.$on("fb_logout_succeded", function () {
         console.log("fb_logout_succeded");
         $rootScope.id = "";
-        $rootScope.loginAction = true;
     });
     // On fail, show fail
     $rootScope.$on("fb_logout_failed", function () {
@@ -63,7 +62,6 @@ function mainController(Facebook, $scope, $rootScope, $http, $location) {
         else {
             console.log("user is connected to facebook and has authorized our app");
             //the parameter needed in that case is just the users facebook id
-            $rootScope.loginAction = false;
             params = {'facebook_id':args.facebook_id};
             authenticateViaFacebook(params);
         }
@@ -76,7 +74,7 @@ function mainController(Facebook, $scope, $rootScope, $http, $location) {
         console.log("Updated");
     };
 
-    // $rootScope.updateSession();
+    $rootScope.updateSession();
 
     // button functions
     $scope.getLoginStatus = function () {
@@ -85,12 +83,13 @@ function mainController(Facebook, $scope, $rootScope, $http, $location) {
 
     $scope.login = function () {
         Facebook.login();
-        console.log($scope.loginAction);
+        $scope.loginAction = false;
     };
 
     $scope.logout = function () {
         Facebook.logout();
         $rootScope.session = {};
+        $scope.loginAction = true;
         alert("Success you logged out");
         //make a call to backend to logout
     };
@@ -109,9 +108,13 @@ function mainController(Facebook, $scope, $rootScope, $http, $location) {
     };
 
     $scope.getLobbies = function() {
-            $http.get('/api/Lobbies/get', {token: $rootScope.session.facebook_id}, function(response) {
-                 $scope.lobbies = response.lobbies;
-            });
+        var config = {headers: {
+            'x-facebook-id': $rootScope.session.facebook_id
+            }
+        };
+        $http.get('/api/Lobbies/get', config, function(response) {
+             $scope.lobbies = response.data;
+        });
     };
 
     $scope.getPictures = function(lobby) {
