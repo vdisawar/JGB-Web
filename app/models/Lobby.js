@@ -6,7 +6,8 @@ var Schema = mongoose.Schema;
 var LobbySchema = new Schema({
     createdAt: {type: Date, default: Date.now},
     name: {type: String, required: true},
-    creator: {type: String, required: true}
+    creator: {type: String, required: true},
+    users: []
 });
 
 module.exports = mongoose.model('Lobby', LobbySchema);

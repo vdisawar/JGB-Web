@@ -3,7 +3,7 @@ var Picture = require('../models/Picture');
 module.exports = {
 	addPicture: function (req, res) {
 		var body = req.body;
-
+		
 		var newPicture = new Picture({
 			name: body.name,
 			lobbyId: body.lobbyId,
