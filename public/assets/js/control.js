@@ -1,4 +1,4 @@
-function mainController(Facebook, $scope, $rootScope, $http, $location) {
+webApp.controller('mainController', function mainController(Facebook, $scope, $rootScope, $http, $location) {
     $scope.info = {};
     $scope.loginAction = true;
     $rootScope.facebook_id = 0;
@@ -129,4 +129,4 @@ function mainController(Facebook, $scope, $rootScope, $http, $location) {
              $scope.pictures[key] = response.pictures;
         });
     };
-}
+});
