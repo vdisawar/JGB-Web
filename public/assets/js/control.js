@@ -114,11 +114,10 @@ function mainController(Facebook, $scope, $rootScope, $http, $location) {
             'x-facebook-id': id
             }
         };
-        $http.get('/api/Lobbies/get', config, function(response) {
+        $http.get('/api/Lobbies/get', function(response) {
              $scope.lobbies = response.data;
              console.log(response);
         });
-        console.log("fasdf");
     };
 
     $scope.getPictures = function(lobby) {
