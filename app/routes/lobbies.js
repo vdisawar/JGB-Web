@@ -14,7 +14,7 @@ module.exports = {
 		newLobby.save(function(err, newLob){
 			//Adds the lobby to the database
 			if (err) {
-				return res.status(400).send({message: "Lobby Not Created " + err});
+				return res.status(400).send({message: "Lobby Not Created " + err + " " + facebookId});
 			} else {
 				return res.status(200).send({message: "Lobby Created", lobby: newLob});
 			}
