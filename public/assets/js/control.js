@@ -77,14 +77,14 @@ function mainController(Facebook, $scope, $rootScope, $http, $location) {
     $rootScope.updateSession();
 
     // button functions
-    $scope.logg = false;
     $scope.getLoginStatus = function () {
-        $scope.logg = Facebook.getLoginStatus();
-        console.log($scope.logg);
+        Facebook.getLoginStatus();
     };
 
     $scope.login = function () {
-        Facebook.login();
+        Facebook.login(function(response) {
+            console.log(response);
+        });
         $scope.loginAction = false;
     };
 
@@ -110,13 +110,13 @@ function mainController(Facebook, $scope, $rootScope, $http, $location) {
     };
 
     $scope.getLobbies = function() {
-            $http.get('/api/getLobbies', {token: $rootScope.session}, function(response) {
+            $http.get('/api/Lobbies/get', {token: $rootScope.session.facebook_id}, function(response) {
                  $scope.lobbies = response.lobbies;
             });
     };
 
     $scope.getPictures = function(lobby) {
-            $http.get('/api/getPictures', {token: $rootScope.session, lobby: lobby.lobby_id}, function(response) {
+            $http.get('/api/Pictures/get', {token: $rootScope.session.facebook_id, lobby: lobby.lobby_id}, function(response) {
                  $scope.pictures = response.pictures;
             });
     };
