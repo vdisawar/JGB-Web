@@ -4,7 +4,7 @@ module.exports = {
 	
 	create: function(req, res) {
 		var body = req.body;
-		var facebookId = req.headers['X-Facebook-Token'];
+		var facebookId = req.headers['x-facebook-id'];
 
 		var newLobby = new Lobby({
 			name: body.name,
@@ -23,7 +23,7 @@ module.exports = {
 	getLobbies: function(req, res) {
 		//Gets all the lobbies from the database
 		var body = req.body;
-		var facebookId = req.headers['X-Facebook-ID'];
+		var facebookId = req.headers['x-facebook-id'];
 
 		Lobby.find({creator: facebookId, users: {$elemMatch: {userId: facebookId}}},function( err, lobbies) {
 			if (err) {
@@ -35,7 +35,7 @@ module.exports = {
 	},
 	invite: function(req, res) {
 		var body = req.body;
-		var facebookIdCreator = req.headers['X-Facebook-ID'];
+		var facebookIdCreator = req.headers['x-facebook-id'];
 		var userToAdd = body.user;
 		var lobbyId = body.lobbyId;
 
