@@ -9,8 +9,8 @@ var helmet  = require('helmet');
 var config = require('./config.js');
 process.env.config = JSON.stringify(config);
 app.use(morgan('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json({limit: '15mb'}));
+app.use(bodyParser.urlencoded({extended: false, limit: '15mb'}));
 
 mongoose.connect(config.MONGODB.URL);
 
