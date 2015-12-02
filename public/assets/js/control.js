@@ -60,7 +60,6 @@ webApp.controller('mainController', function mainController(Facebook, $scope, $r
         else {
             console.log("user is connected to facebook and has authorized our app");
             //the parameter needed in that case is just the users facebook id
-            $rootScope.facebook_id = args.facebook_id;
             params = {'facebook_id':args.facebook_id};
             authenticateViaFacebook(params);
         }
@@ -119,11 +118,7 @@ webApp.controller('mainController', function mainController(Facebook, $scope, $r
 
     $scope.getPictures = function(lobby,key) {
         var id = $rootScope.facebook_id;
-        var config = {headers: {
-            'x-facebook-id': id
-            }
-        };
-        $http.post('/api/Pictures/get', {lobbyId: lobby._id}, config).then(function(response) {
+        $http.post('/api/Pictures/get', {lobbyId: lobby._id}).then(function(response) {
              console.log(response);
              $scope.picturesDisplay[key] = response.pictures;
         });
