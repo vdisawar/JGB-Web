@@ -123,8 +123,8 @@ webApp.controller('mainController', function mainController(Facebook, $scope, $r
             }
         };
         $http.post('/api/Pictures/get', {lobbyId: lobby._id}, config).then(function(response) {
-             console.log(response);
              $scope.picturesDisplay[key] = response.data.data;
+             console.log($scope.picturesDisplay[key]);
         });
     };
 });
