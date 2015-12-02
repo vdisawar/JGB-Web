@@ -105,6 +105,7 @@ webApp.controller('mainController', function mainController(Facebook, $scope, $r
 
     $scope.getLobbies = function() {
         var id = $rootScope.facebook_id;
+        console.log(id);
         $http.get('/api/Lobbies/get', {headers: {
             'x-facebook-id': id
             }
