@@ -118,9 +118,13 @@ webApp.controller('mainController', function mainController(Facebook, $scope, $r
 
     $scope.getPictures = function(lobby,key) {
         var id = $rootScope.facebook_id;
-        $http.post('/api/Pictures/get', {lobbyId: lobby._id}).then(function(response) {
+        var config = {headers: {
+            'x-facebook-id': id
+            }
+        };
+        $http.post('/api/Pictures/get', {lobbyId: lobby._id}, config).then(function(response) {
              console.log(response);
-             $scope.picturesDisplay[key] = response.pictures;
+             $scope.picturesDisplay[key] = response.data.data;
         });
     };
 });
