@@ -134,7 +134,7 @@ webApp.controller('mainController', function mainController(Facebook, $scope, $r
         };
         $http.post('/api/Pictures/get', {lobbyId: lobby._id}, config).then(function(response) {
              $scope.picturesDisplay[key] = response.data.data;
-             console.log($scope.picturesDisplay[key]);
+             console.log($scope.arrayBufferToBase64($scope.picturesDisplay[key][0].picture));
         });
     };
 });
