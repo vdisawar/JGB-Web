@@ -50,6 +50,8 @@ webApp.controller('mainController', function mainController(Facebook, $scope, $r
             //posts some user data to a page that will check them against some db
         }
 
+        $rootScope.facebook_id = args.facebook_id;
+
         if (args.userNotAuthorized === true) {
             //if the user has not authorized the app, we must write his credentials in our database
             console.log("user is connected to facebook but has not authorized our app");
