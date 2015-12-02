@@ -71,7 +71,7 @@
 					<!-- Lightbox Gallery  -->
 						<div class="container 75% gallery picture-box">
 							<div class="row 0% images" ng-repeat="(keyP, pic) in picturesDisplay[key]">
-								<div class="6u 12u(mobile)"><a href="../images/fulls/01.jpg" class="image fit from-left"><img ng-src="data:image/PNG;base64,{{pic.picture}}"/></a></div>
+								<div class="6u 12u(mobile)"><a href="../images/fulls/01.jpg" class="image fit from-left"><img ng-src="data:image/PNG;base64,{{arrayBufferToBase64(pic.picture)}}"/></a></div>
 								<div class="6u 12u(mobile)"><a href="../images/fulls/02.jpg" class="image fit from-right"><img src="../images/thumbs/02.jpg" title="{{picture[1].author}}" alt="" /></a></div>
 							</div>
 						</div>
