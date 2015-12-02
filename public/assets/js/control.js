@@ -120,7 +120,8 @@ webApp.controller('mainController', function mainController(Facebook, $scope, $r
             'x-facebook-id': id
             }
         };
-        $http.get('/api/Pictures/get', {lobby: lobby._id}, config).then(function(response) {
+        $http.post('/api/Pictures/get', {lobbyId: lobby._id}, config).then(function(response) {
+             console.log(response);
              $scope.picturesDisplay[key] = response.pictures;
         });
     };
