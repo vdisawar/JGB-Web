@@ -8,6 +8,8 @@ var Pictures = require('./pictures.js');
 module.exports = function(app){
 	app.post('/api/Lobbies/create', Lobbies.create),
 	app.get('/api/Lobbies/get', Lobbies.getLobbies),
+	app.post('/api/Lobbies/delete', Lobbies.deleteLobby),
 	app.post('/api/Pictures/add', Pictures.addPicture),
-	app.post('/api/Pictures/get', Pictures.getPictures)
+	app.post('/api/Pictures/get', Pictures.getPictures),
+	app.post('/api/Pictures/delete', Pictures.deletePicture)
 };

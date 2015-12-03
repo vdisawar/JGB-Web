@@ -32,5 +32,17 @@ module.exports = {
 				return res.status(200).send({message: "Pictures Found", data: pictures});
 			}
 		});
+	},
+	deletePicture: function(req, res) {
+		var body = req.body;
+		var facebookId = req.headers['x-facebook-id'];
+
+		Lobby.remove({_id: body.pictureId},function( err, response) {
+			if (err) {
+				return res.status(400).send({message: "Picture Not Found"});
+			} else {
+				return res.status(200).send({message: "Picture Deleted");
+			}
+		});
 	}
 };
