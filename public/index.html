@@ -67,7 +67,9 @@
 					<header>
 						<h2>{{lobby.name}}</h2>
 					</header>
-					<a href="javascript:void(0)" ng-click="getPictures(lobby, key)">Get Pictures</a>
+					<a href="javascript:void(0)" ng-click="getPictures(lobby, key)" ng-if="!show[key]">Get Pictures</a>
+					<a href="javascript:void(0)" ng-click="hidePictures(key)" ng-if="show[key]">Hide Pictures</a>
+
 					<!-- Lightbox Gallery  -->
 						<div class="container 75% gallery picture-box">
 							<div class="row 0% images" ng-repeat="(keyP, pic) in picturesDisplay[key]">

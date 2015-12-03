@@ -4,6 +4,7 @@ webApp.controller('mainController', function mainController(Facebook, $scope, $r
     $rootScope.facebook_id = 0;
     $scope.lobbies = [];
     $scope.picturesDisplay = [];
+    $scope.show = [];
     $scope.pictures = [[{
         author: "Vishal",
         time: "00:11:22"
@@ -106,13 +107,14 @@ webApp.controller('mainController', function mainController(Facebook, $scope, $r
 
     $scope.getLobbies = function() {
         var id = $rootScope.facebook_id;
-        console.log(id);
         $http.get('/api/Lobbies/get', {headers: {
             'x-facebook-id': id
             }
         }).then(function(response) {
                 $scope.lobbies = response.data.data;
-                console.log(response.data);
+                for (var i = 0 ; i < lobbies.length; i++) {
+                    show[i] = false;
+                };
         });
     };
 
@@ -134,6 +136,12 @@ webApp.controller('mainController', function mainController(Facebook, $scope, $r
         };
         $http.post('/api/Pictures/get', {lobbyId: lobby._id}, config).then(function(response) {
              $scope.picturesDisplay[key] = response.data.data;
+             $scope.show[key] = true;
         });
+    };
+
+    $scope.hidePictures = function(key) {
+        $scope.picturesDisplay[key] = [];
+        $scope.show[key] = false;
     };
 });
