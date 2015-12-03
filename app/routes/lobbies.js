@@ -42,7 +42,7 @@ module.exports = {
 			if (err) {
 				return res.status(400).send({message: "Lobbies Not Found"});
 			} else {
-				return res.status(200).send({message: "Lobby Deleted");
+				return res.status(200).send({message: "Lobby Deleted"});
 			}
 		});
 	}

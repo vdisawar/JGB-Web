@@ -41,7 +41,7 @@ module.exports = {
 			if (err) {
 				return res.status(400).send({message: "Picture Not Found"});
 			} else {
-				return res.status(200).send({message: "Picture Deleted");
+				return res.status(200).send({message: "Picture Deleted"});
 			}
 		});
 	}
