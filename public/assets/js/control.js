@@ -116,14 +116,14 @@ webApp.controller('mainController', function mainController(Facebook, $scope, $r
         });
     };
 
-    $scope.arrayBufferToBase64 = function( buffer ) {
-        var binary = '';
-        var bytes = new Uint8Array( buffer );
+    $scope.arrayBufferToBase64 = function( image ) {
+        var base64String = '';
+        var bytes = new Uint8Array( image );
         var len = bytes.byteLength;
         for (var i = 0; i < len; i++) {
-            binary += String.fromCharCode( bytes[ i ] );
+            base64String += String.fromCharCode( bytes[ i ] );
         }
-        return window.btoa( binary );
+        return window.btoa( base64String );
     }
 
     $scope.getPictures = function(lobby,key) {
@@ -134,7 +134,6 @@ webApp.controller('mainController', function mainController(Facebook, $scope, $r
         };
         $http.post('/api/Pictures/get', {lobbyId: lobby._id}, config).then(function(response) {
              $scope.picturesDisplay[key] = response.data.data;
-             console.log($scope.arrayBufferToBase64($scope.picturesDisplay[key][0].picture));
         });
     };
 });
