@@ -26,11 +26,23 @@ module.exports = {
 		var body = req.body;
 		var facebookId = req.headers['x-facebook-id'];
 
-		Lobby.find({creator: facebookId},function( err, lobbies) {
+		Lobby.find( { $or: [ {creator: facebookId}, {users: {$elemMatch: {userId: facebookId}}} ] },function( err, lobbies) {
 			if (err) {
 				return res.status(400).send({message: "Lobbies Not Found", data: []});
 			} else {
 				return res.status(200).send({message: "Lobbies Found", data: lobbies});
+			}
+		});
+	},
+	deleteLobby: function(req, res) {
+		var body = req.body;
+		var facebookId = req.headers['x-facebook-id'];
+
+		Lobby.remove({_id: body.lobbyId},function( err, response) {
+			if (err) {
+				return res.status(400).send({message: "Lobbies Not Found"});
+			} else {
+				return res.status(200).send({message: "Lobby Deleted");
 			}
 		});
 	}

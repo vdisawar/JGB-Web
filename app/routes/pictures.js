@@ -3,7 +3,7 @@ var Picture = require('../models/Picture');
 module.exports = {
 	addPicture: function (req, res) {
 		var body = req.body;
-		
+
 		var newPicture = new Picture({
 			name: body.name,
 			lobbyId: body.lobbyId,
@@ -13,6 +13,7 @@ module.exports = {
 
 		newPicture.save(function(err, newPic){
 			//Adds the picture to the database
+			console.log("Error" + err);
 			if (err) {
 				return res.status(400).send({message: "Picture Not Created"});
 			} else {
@@ -29,6 +30,18 @@ module.exports = {
 				return res.status(400).send({message: "Pictures Not Found", data: []});
 			} else {
 				return res.status(200).send({message: "Pictures Found", data: pictures});
+			}
+		});
+	},
+	deletePicture: function(req, res) {
+		var body = req.body;
+		var facebookId = req.headers['x-facebook-id'];
+
+		Lobby.remove({_id: body.pictureId},function( err, response) {
+			if (err) {
+				return res.status(400).send({message: "Picture Not Found"});
+			} else {
+				return res.status(200).send({message: "Picture Deleted");
 			}
 		});
 	}

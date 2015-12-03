@@ -50,6 +50,8 @@ webApp.controller('mainController', function mainController(Facebook, $scope, $r
             //posts some user data to a page that will check them against some db
         }
 
+        $rootScope.facebook_id = args.facebook_id;
+
         if (args.userNotAuthorized === true) {
             //if the user has not authorized the app, we must write his credentials in our database
             console.log("user is connected to facebook but has not authorized our app");
@@ -58,7 +60,6 @@ webApp.controller('mainController', function mainController(Facebook, $scope, $r
         else {
             console.log("user is connected to facebook and has authorized our app");
             //the parameter needed in that case is just the users facebook id
-            $rootScope.facebook_id = args.facebook_id;
             params = {'facebook_id':args.facebook_id};
             authenticateViaFacebook(params);
         }
@@ -105,6 +106,7 @@ webApp.controller('mainController', function mainController(Facebook, $scope, $r
 
     $scope.getLobbies = function() {
         var id = $rootScope.facebook_id;
+        console.log(id);
         $http.get('/api/Lobbies/get', {headers: {
             'x-facebook-id': id
             }
@@ -114,14 +116,24 @@ webApp.controller('mainController', function mainController(Facebook, $scope, $r
         });
     };
 
+    $scope.arrayBufferToBase64 = function( image ) {
+        var base64String = '';
+        var bytes = new Uint8Array( image );
+        var len = bytes.byteLength;
+        for (var i = 0; i < len; i++) {
+            base64String += String.fromCharCode( bytes[ i ] );
+        }
+        return window.btoa( base64String );
+    }
+
     $scope.getPictures = function(lobby,key) {
         var id = $rootScope.facebook_id;
         var config = {headers: {
             'x-facebook-id': id
             }
         };
-        $http.get('/api/Pictures/get', {lobby: lobby._id}, config).then(function(response) {
-             $scope.picturesDisplay[key] = response.pictures;
+        $http.post('/api/Pictures/get', {lobbyId: lobby._id}, config).then(function(response) {
+             $scope.picturesDisplay[key] = response.data.data;
         });
     };
 });
