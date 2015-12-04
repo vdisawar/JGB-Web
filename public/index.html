@@ -44,6 +44,7 @@
 			<section id="intro" class="main style1 dark fullscreen">
 				<div class="content container 75%">
 					<header>
+						<img class="header-image" src="../images/JGB1.png" alt=""/>
 						<h2>JesusGandhiAndBebe</h2>
 					</header>
 					<p>All your pictures in one place</p>
@@ -71,11 +72,11 @@
 					<a href="javascript:void(0)" ng-click="hidePictures(key)" ng-if="show[key]">Hide Pictures</a>
 
 					<!-- Lightbox Gallery  -->
-						<div class="container 75% gallery picture-box">
+						<div class="container 75% gallery">
 							<div class="row 0% images" ng-repeat="(keyP, pic) in picturesDisplay[key]">
 								
-								<div class="6u 12u(mobile)">
-									<img data-ng-src="data:image/PNG;base64,{{arrayBufferToBase64(pic.picture)}}" alt="" />
+								<div class="picture-box">
+									<img class="picture-image" data-ng-src="data:image/PNG;base64,{{arrayBufferToBase64(pic.picture)}}" alt="" />
 								</div>
 
 							</div>

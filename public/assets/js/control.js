@@ -105,6 +105,7 @@ webApp.controller('mainController', function mainController(Facebook, $scope, $r
         $rootScope.info = $rootScope.session;
     };
 
+    // Get lobbies based on face book id
     $scope.getLobbies = function() {
         var id = $rootScope.facebook_id;
         $http.get('/api/Lobbies/get', {headers: {
@@ -118,6 +119,7 @@ webApp.controller('mainController', function mainController(Facebook, $scope, $r
         });
     };
 
+    //Convert array to base 64 to show photo
     $scope.arrayBufferToBase64 = function( image ) {
         var base64String = '';
         var bytes = new Uint8Array( image );
@@ -128,6 +130,7 @@ webApp.controller('mainController', function mainController(Facebook, $scope, $r
         return window.btoa( base64String );
     }
 
+    // Use lobby id to get pictures
     $scope.getPictures = function(lobby,key) {
         var id = $rootScope.facebook_id;
         var config = {headers: {
@@ -140,6 +143,7 @@ webApp.controller('mainController', function mainController(Facebook, $scope, $r
         });
     };
 
+    //Hide pictures
     $scope.hidePictures = function(key) {
         $scope.picturesDisplay[key] = [];
         $scope.show[key] = false;

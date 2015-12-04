@@ -13,7 +13,6 @@
 
 .lobby-margin {
 	margin-top: 35px;
-
 }
 
 .lobby-title-margin {
@@ -22,8 +21,21 @@
 	font-size: 40px;
 }
 
+.header-image {
+	height: 300px;
+	width: 310px;
+}
+
+.picture-image {
+	height: 450px;
+	width: 260px;
+	margin-top: 10px;
+}
+
 .picture-box {
 	box-shadow: 10px 10px 5px #888888;
+	margin: 0 auto;
+	text-align: center;
 }
 
 /* Reset */
